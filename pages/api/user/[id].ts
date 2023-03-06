@@ -5,9 +5,9 @@ export default function userHandler(
   req: NextApiRequest,
   res: NextApiResponse<User>
 ) {
-  const { query, method } = req
+  const { method, query, body } = req
   const id = parseInt(query.id as string, 10)
-  const name = query.name as string
+  const name = body.name as string
 
   switch (method) {
     case 'GET':
