@@ -1,10 +1,13 @@
 import type { NextApiRequest, NextApiResponse } from 'next'
 import type { User } from '../../../interfaces'
+import { runMiddleware } from '../../../utils/cors'
 
-export default function userHandler(
+export default async function userHandler(
   req: NextApiRequest,
   res: NextApiResponse<User>
 ) {
+  await runMiddleware(req, res)
+
   const { method, query, body } = req
   const id = parseInt(query.id as string, 10)
   const name = body.name as string
